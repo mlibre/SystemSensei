@@ -14,13 +14,18 @@ display_header() {
 gather_and_display_info() {
 	# Display section headers
 	display_header "Current Date and Time"
-	date
+	date "+%Y-%m-%d %T %Z"
 
 	display_header "Hostname"
 	hostname
 
-	display_header "Distribution"
-	cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2
+	display_header "Distribution Information"
+	DISTRIB_ID=$(grep DISTRIB_ID /etc/*-release | cut -d'=' -f2)
+	DISTRIB_RELEASE=$(grep DISTRIB_RELEASE /etc/*-release | cut -d'=' -f2)
+	PRETTY_NAME=$(grep PRETTY_NAME /etc/*-release | cut -d'"' -f2)
+	echo "ID: $DISTRIB_ID"
+	echo "Release: $DISTRIB_RELEASE"
+	echo "Name: $PRETTY_NAME"
 
 	display_header "Kernel Version"
 	uname -r

@@ -106,6 +106,14 @@ $separator
 
 $cpu_info
 $separator
+- uname -m:
+
+$uname_m
+$separator
+- IP Address:
+
+$ip_address
+$separator
 - Memory Information:
 
 $total_ram
@@ -114,21 +122,34 @@ $separator
 
 $total_disk
 $separator
-- IP Address:
+- MAC Address:
 
-$ip_address
+$mac_address
+$separator
+
+- Timezone:
+
+$timezone_info
+$separator
+- Locale:
+
+$locale_info
+$separator
+- Uptime:
+
+$uptime_info
 $separator
 - lspci:
 
 $lspci_info
 $separator
-- dmidecode:
+- dmidecode -t system:
 
-$dmidecode_info
+$dmidecode_system
 $separator
-- uname -m:
+- dmidecode -t processor:
 
-$uname_m
+$dmidecode_processor
 $separator
 - lshw -short:
 
@@ -142,19 +163,11 @@ $separator
 
 $lsusb_info
 $separator
-- dmidecode -t system:
+- dmidecode:
 
-$dmidecode_system
+$dmidecode_info
 $separator
-- dmidecode -t processor:
-
-$dmidecode_processor
-$separator
-- Uptime:
-
-$uptime_info
-$separator
-- Hostnamectl:
+- hostnamectl:
 
 $hostnamectl_info
 $separator
@@ -173,18 +186,6 @@ $separator
 - Sensors:
 
 $sensors_info
-$separator
-- MAC Address:
-
-$mac_address
-$separator
-- Timezone:
-
-$timezone_info
-$separator
-- Locale:
-
-$locale_info
 $separator
 "
 

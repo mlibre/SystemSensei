@@ -24,6 +24,18 @@ gather_and_display_cpu_info() {
 	echo "CPU max MHz: $cpu_max_mhz"
 }
 
+# Function to gather and display Distribution Information
+gather_and_display_distribution_info() {
+	display_header "Distribution Information"
+	DISTRIB_ID=$(grep DISTRIB_ID /etc/*-release | cut -d'=' -f2)
+	DISTRIB_RELEASE=$(grep DISTRIB_RELEASE /etc/*-release | cut -d'=' -f2)
+	PRETTY_NAME=$(grep PRETTY_NAME /etc/*-release | cut -d'"' -f2)
+
+	echo "ID: $DISTRIB_ID"
+	echo "Release: $DISTRIB_RELEASE"
+	echo "Name: $PRETTY_NAME"
+}
+
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
@@ -33,13 +45,7 @@ gather_and_display_info() {
 	display_header "Hostname"
 	hostname
 
-	display_header "Distribution Information"
-	DISTRIB_ID=$(grep DISTRIB_ID /etc/*-release | cut -d'=' -f2)
-	DISTRIB_RELEASE=$(grep DISTRIB_RELEASE /etc/*-release | cut -d'=' -f2)
-	PRETTY_NAME=$(grep PRETTY_NAME /etc/*-release | cut -d'"' -f2)
-	echo "ID: $DISTRIB_ID"
-	echo "Release: $DISTRIB_RELEASE"
-	echo "Name: $PRETTY_NAME"
+	gather_and_display_distribution_info
 
 	display_header "Kernel Version"
 	uname -r

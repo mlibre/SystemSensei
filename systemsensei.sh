@@ -10,6 +10,20 @@ display_header() {
 "
 }
 
+# Function to gather and display CPU Information
+gather_and_display_cpu_info() {
+	display_header "CPU Information"
+	architecture=$(lscpu | grep "Architecture" | awk -F ': ' '{print $2}')
+	model_name=$(lscpu | grep "Model name" | awk -F ': ' '{print $2}')
+	cores_per_socket=$(lscpu | grep "Core(s) per socket" | awk -F ': ' '{print $2}')
+	cpu_max_mhz=$(lscpu | grep "CPU max MHz" | awk -F ': ' '{print $2}')
+
+	echo "Architecture: $architecture"
+	echo "Model name: $model_name"
+	echo "Core(s) per socket: $cores_per_socket"
+	echo "CPU max MHz: $cpu_max_mhz"
+}
+
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
@@ -30,8 +44,7 @@ gather_and_display_info() {
 	display_header "Kernel Version"
 	uname -r
 
-	display_header "CPU Information"
-	lscpu | grep "Model name" | awk -F ': ' '{print $2}'
+	gather_and_display_cpu_info
 
 	display_header "uname -m"
 	uname -m

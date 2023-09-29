@@ -1,13 +1,17 @@
 #!/bin/bash
 
+# Separator
+separator="
+---------------------------------"
+
 # Function to gather system information
 gather_system_info() {
+
+	# Get the current date and time
+	current_date=$(date)
+
 	# Get the hostname
 	hostname=$(hostname)
-
-	# Separator
-	separator="
----------------------------------"
 
 	# Get the Linux distribution and version
 	distro=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
@@ -31,15 +35,18 @@ gather_system_info() {
 	lspci_info=$(lspci)
 
 	# Get dmidecode information
-	dmidecode_info=$(dmidecode)
+	dmidecode_info=$(sudo dmidecode -t memory)
 
-	# Get the current date and time
-	current_date=$(date)
+	uname_m=$(uname -m)
+	lshw_short=$(sudo lshw -short)
+	lsblk_a=$(lsblk -a)
+	lsusb_info=$(lsusb)
+	dmidecode_system=$(sudo dmidecode -t system)
+	dmidecode_processor=$(sudo dmidecode -t processor)
 
 	# Build the SYS_INFO variable with separators
 	SYS_INFO="
 System Information:
-
 $separator
 - Current Date and Time:
 
@@ -80,6 +87,30 @@ $separator
 - dmidecode:
 
 $dmidecode_info
+$separator
+- uname -m:
+
+$uname_m
+$separator
+- lshw -short:
+
+$lshw_short
+$separator
+- lsblk -a:
+
+$lsblk_a
+$separator
+- lsusb:
+
+$lsusb_info
+$separator
+- dmidecode -t system:
+
+$dmidecode_system
+$separator
+- dmidecode -t processor:
+
+$dmidecode_processor
 $separator
 "
 

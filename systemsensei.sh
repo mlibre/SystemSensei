@@ -1,196 +1,93 @@
 #!/bin/bash
 
 # Separator
-separator="
----------------------------------"
+separator="---------------------------------"
 
-# Function to gather system information
-gather_system_info() {
-
-	# Get the current date and time
-	current_date=$(date)
-
-	# Get the hostname
-	hostname=$(hostname)
-
-	# Get the Linux distribution and version
-	distro=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
-
-	# Get the kernel version
-	kernel=$(uname -r)
-
-	# Get CPU information
-	cpu_info=$(lscpu | grep "Model name" | awk -F ': ' '{print $2}')
-
-	# Get total RAM
-	total_ram=$(free -h | awk '/Mem:/ {print $2}')
-
-	# Get total disk space
-	total_disk=$(df -h / | awk 'NR==2 {print $2}')
-
-	# Get IP address
-	ip_address=$(hostname -i | awk '{print $1}')
-
-	# Get lspci information
-	lspci_info=$(lspci)
-
-	# Get dmidecode information
-	dmidecode_info=$(sudo dmidecode -t memory)
-
-	# Get uname -m
-	uname_m=$(uname -m)
-
-	# Get lshw -short
-	lshw_short=$(sudo lshw -short)
-
-	# Get lsblk -a
-	lsblk_a=$(lsblk -a)
-
-	# Get lsusb information
-	lsusb_info=$(lsusb)
-
-	# Get dmidecode -t system
-	dmidecode_system=$(sudo dmidecode -t system)
-
-	# Get dmidecode -t processor
-	dmidecode_processor=$(sudo dmidecode -t processor)
-
-	# Get uptime
-	uptime_info=$(uptime)
-
-	# Get hostnamectl
-	hostnamectl_info=$(hostnamectl)
-
-	# Get proc/cpuinfo
-	cpuinfo_info=$(cat /proc/cpuinfo)
-
-	# Get id
-	id_info=$(id)
-
-	# Get ps -e
-	ps_info=$(ps -e)
-
-	# Get sensors
-	sensors_info=$(sensors)
-
-	# Get MAC address
-	mac_address=$(ip link show | awk '/ether/ {print $2}')
-
-	# Get timezone
-	timezone_info=$(timedatectl show --property=Timezone --value)
-
-	# Get locale
-	locale_info=$(locale)
-
-	# Build the SYS_INFO variable with separators
-	SYS_INFO="
-System Information:
-$separator
-- Current Date and Time:
-
-$current_date
-$separator
-- Hostname:
-
-$hostname
-$separator
-- Distribution:
-
-$distro
-$separator
-- Kernel Version:
-
-$kernel
-$separator
-- CPU Information:
-
-$cpu_info
-$separator
-- uname -m:
-
-$uname_m
-$separator
-- IP Address:
-
-$ip_address
-$separator
-- Memory Information:
-
-$total_ram
-$separator
-- Disk Information:
-
-$total_disk
-$separator
-- MAC Address:
-
-$mac_address
-$separator
-
-- Timezone:
-
-$timezone_info
-$separator
-- Locale:
-
-$locale_info
-$separator
-- Uptime:
-
-$uptime_info
-$separator
-- lspci:
-
-$lspci_info
-$separator
-- dmidecode -t system:
-
-$dmidecode_system
-$separator
-- dmidecode -t processor:
-
-$dmidecode_processor
-$separator
-- lshw -short:
-
-$lshw_short
-$separator
-- lsblk -a:
-
-$lsblk_a
-$separator
-- lsusb:
-
-$lsusb_info
-$separator
-- dmidecode:
-
-$dmidecode_info
-$separator
-- hostnamectl:
-
-$hostnamectl_info
-$separator
-- proc/cpuinfo:
-
-$cpuinfo_info
-$separator
-- ID:
-
-$id_info
-$separator
-- ps -e:
-
-$ps_info
-$separator
-- Sensors:
-
-$sensors_info
-$separator
+# Function to display section headers
+display_header() {
+	echo "$separator"
+	echo "$1:
 "
-
-	echo "$SYS_INFO"
 }
 
-# Call the function to gather system info
-gather_system_info
+# Function to gather and display system information
+gather_and_display_info() {
+	# Display section headers
+	display_header "Current Date and Time"
+	date
+
+	display_header "Hostname"
+	hostname
+
+	display_header "Distribution"
+	cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2
+
+	display_header "Kernel Version"
+	uname -r
+
+	display_header "CPU Information"
+	lscpu | grep "Model name" | awk -F ': ' '{print $2}'
+
+	display_header "uname -m"
+	uname -m
+
+	display_header "IP Address"
+	hostname -i | awk '{print $1}'
+
+	display_header "Memory Information"
+	free -h | awk '/Mem:/ {print $2}'
+
+	display_header "Disk Information"
+	df -h / | awk 'NR==2 {print $2}'
+
+	display_header "MAC Address"
+	ip link show | awk '/ether/ {print $2}'
+
+	display_header "Timezone"
+	timedatectl show --property=Timezone --value
+
+	display_header "Locale"
+	locale
+
+	display_header "Uptime"
+	uptime
+
+	display_header "lspci"
+	lspci
+
+	display_header "dmidecode -t system"
+	sudo dmidecode -t system
+
+	display_header "dmidecode -t processor"
+	sudo dmidecode -t processor
+
+	display_header "lshw -short"
+	sudo lshw -short
+
+	display_header "lsblk -a"
+	lsblk -a
+
+	display_header "lsusb"
+	lsusb
+
+	display_header "dmidecode"
+	sudo dmidecode
+
+	display_header "hostnamectl"
+	hostnamectl
+
+	display_header "proc/cpuinfo"
+	cat /proc/cpuinfo
+
+	display_header "ID"
+	id
+
+	display_header "ps -e"
+	ps -e
+
+	display_header "Sensors"
+	sensors
+}
+
+# Call the function to gather and display system info
+gather_and_display_info

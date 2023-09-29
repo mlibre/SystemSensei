@@ -48,6 +48,8 @@ And much more! SystemSensei.sh is your go-to tool for Linux system insight.
 
 4. Run it: `./systemsensei.sh`
 
+5. Or `bash systemsensei.sh | less` to view output one page at a time
+
 That's it! Let SystemSensei.sh unveil the secrets of your Linux machine. 🥋
 
 ## License 📜

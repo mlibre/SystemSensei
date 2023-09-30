@@ -62,7 +62,7 @@ You can enhance the power of SystemSensei by feeding its output to Language Mode
 
 3. Ask the Language Model to diagnose system issues, answer questions, or perform any other tasks related to the gathered system information.
 
-With this integration, you can turn your **SystemSensei.sh** into a valuable tool for system diagnosis and assistance.
+With this integration, you can turn your **SystemSensei** into a valuable tool for system diagnosis and assistance.
 
 ## License 📜
 

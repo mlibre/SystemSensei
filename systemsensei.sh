@@ -66,6 +66,21 @@ display_top_memory_processes() {
 	ps aux --sort=-%mem | head -11
 }
 
+# Function to display boot error logs
+display_boot_error_logs() {
+	display_header "Boot Error Logs"
+
+	# Display boot error logs from the systemd journal
+	journalctl -b -p err
+}
+
+gather_and_display_dns_info() {
+	display_header "DNS Information"
+
+	# Display DNS server information
+	resolvectl
+}
+
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
@@ -100,6 +115,8 @@ gather_and_display_info() {
 
 	show_ip_addresses
 
+	gather_and_display_dns_info
+
 	display_header "MAC Address"
 	ip link show | awk '/ether/ {print $2}'
 
@@ -127,6 +144,8 @@ gather_and_display_info() {
 
 	display_header "Sensors"
 	sensors
+
+	display_boot_error_logs
 }
 
 # Call the function to gather and display system info

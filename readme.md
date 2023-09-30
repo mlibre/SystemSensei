@@ -42,7 +42,7 @@ And much more! SystemSensei.sh is your go-to tool for Linux system insight.
 
 1. Download the script: `git clone https://github.com/mlibre/SystemSensei`
 
-2. cd to SystemSensei: `cd SystemSensei`
+2. `cd SystemSensei`
 
 3. Make it executable: `chmod +x systemsensei.sh`
 

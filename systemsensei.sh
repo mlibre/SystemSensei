@@ -18,6 +18,9 @@ gather_and_display_cpu_info() {
 	cores_per_socket=$(lscpu | grep "Core(s) per socket" | awk -F ': ' '{print $2}')
 	cpu_max_mhz=$(lscpu | grep "CPU max MHz" | awk -F ': ' '{print $2}')
 
+	processor_info=$(sudo dmidecode -t processor | grep -E "Manufacturer|Thread Count" | awk -F ': ' '{print $1 ": " $2}' | sed 's/^[ \t]*//')
+
+	echo "$processor_info"
 	echo "Architecture: $architecture"
 	echo "Model name: $model_name"
 	echo "Core(s) per socket: $cores_per_socket"
@@ -51,6 +54,18 @@ gather_and_display_memory_info() {
 	echo "Used: $used_memory"
 }
 
+# Function to display top 10 processes by CPU usage
+display_top_cpu_processes() {
+	display_header "Top 10 Processes by CPU Usage"
+	ps aux --sort=-%cpu | head -11
+}
+
+# Function to display top 10 processes by memory usage
+display_top_memory_processes() {
+	display_header "Top 10 Processes by Memory Usage"
+	ps aux --sort=-%mem | head -11
+}
+
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
@@ -60,8 +75,20 @@ gather_and_display_info() {
 	display_header "Timezone"
 	timedatectl show --property=Timezone --value
 
+	display_header "Locale"
+	locale
+
+	display_header "Uptime"
+	uptime
+
 	display_header "Hostname"
 	hostname
+
+	display_header "hostnamectl"
+	hostnamectl
+
+	display_header "User Information"
+	id
 
 	gather_and_display_distribution_info
 
@@ -83,44 +110,20 @@ gather_and_display_info() {
 	display_header "Disk Information"
 	df -h
 
-	display_header "Locale"
-	locale
-
-	display_header "Uptime"
-	uptime
-
-	display_header "lspci"
-	lspci
-
-	display_header "dmidecode -t system"
-	sudo dmidecode -t system
-
-	display_header "dmidecode -t processor"
-	sudo dmidecode -t processor
-
-	display_header "lshw -short"
-	sudo lshw -short
-
 	display_header "lsblk -a"
 	lsblk -a
 
 	display_header "lsusb"
 	lsusb
 
-	display_header "dmidecode"
-	sudo dmidecode
+	display_header "System PCI devices"
+	lspci
 
-	display_header "hostnamectl"
-	hostnamectl
+	display_header "lshw -short"
+	sudo lshw -short
 
-	display_header "proc/cpuinfo"
-	cat /proc/cpuinfo
-
-	display_header "ID"
-	id
-
-	display_header "ps -e"
-	ps -e
+	display_top_cpu_processes
+	display_top_memory_processes
 
 	display_header "Sensors"
 	sensors

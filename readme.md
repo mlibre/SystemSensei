@@ -32,7 +32,7 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 
 - 🎛️ **Hardware Info**: Dive deep into hardware details
 
-- 📃 **System Processes**: List running processes
+- 📃 **Top CPU and Memory Processes**: List top CPU and memory usage processes
 
 - 🌡️ **Sensors**: Monitor hardware sensors
 
@@ -51,6 +51,18 @@ And much more! SystemSensei.sh is your go-to tool for Linux system insight.
 5. Or `bash systemsensei.sh | less` to view output one page at a time
 
 That's it! Let SystemSensei.sh unveil the secrets of your Linux machine. 🥋
+
+## Using SystemSensei with Language Models 🤖
+
+You can enhance the power of SystemSensei by feeding its output to Language Model APIs, such as GPT-3 or similar chatbots. Here's how:
+
+1. Run **systemsensei.sh** to gather system information: `./systemsensei.sh > system_info.txt`
+
+2. Use the generated `system_info.txt` file as input for your Language Model API of choice.
+
+3. Ask the Language Model to diagnose system issues, answer questions, or perform any other tasks related to the gathered system information.
+
+With this integration, you can turn your **SystemSensei.sh** into a valuable tool for system diagnosis and assistance.
 
 ## License 📜
 

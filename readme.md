@@ -1,4 +1,4 @@
-# SystemSensei.sh
+# System Sensei
 
 Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trusty sidekick for gathering, sensing, and sharing essential Linux system information. 🚀
 

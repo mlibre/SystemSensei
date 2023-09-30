@@ -6,7 +6,7 @@ separator="---------------------------------"
 # Function to display section headers
 display_header() {
 	echo "$separator"
-	echo "$1:
+	echo "### $1 ###
 "
 }
 
@@ -36,11 +36,29 @@ gather_and_display_distribution_info() {
 	echo "Name: $PRETTY_NAME"
 }
 
+show_ip_addresses() {
+	display_header "System's IP Address"
+	ip -o addr show | awk '{print $2, $4}' | sed 's/\/[0-9]*//' | column -t -s ' '
+}
+
+# Function to gather and display Memory Information
+gather_and_display_memory_info() {
+	display_header "Memory Information"
+	total_memory=$(free -h | awk '/Mem:/ {print $2}')
+	used_memory=$(free -h | awk '/Mem:/ {print $3}')
+
+	echo "Total: $total_memory"
+	echo "Used: $used_memory"
+}
+
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
 	display_header "Current Date and Time"
 	date "+%Y-%m-%d %T %Z"
+
+	display_header "Timezone"
+	timedatectl show --property=Timezone --value
 
 	display_header "Hostname"
 	hostname
@@ -50,25 +68,20 @@ gather_and_display_info() {
 	display_header "Kernel Version"
 	uname -r
 
-	gather_and_display_cpu_info
-
-	display_header "uname -m"
+	display_header "Kernel Architecture"
 	uname -m
 
-	display_header "IP Address"
-	hostname -i | awk '{print $1}'
-
-	display_header "Memory Information"
-	free -h | awk '/Mem:/ {print $2}'
-
-	display_header "Disk Information"
-	df -h / | awk 'NR==2 {print $2}'
+	show_ip_addresses
 
 	display_header "MAC Address"
 	ip link show | awk '/ether/ {print $2}'
 
-	display_header "Timezone"
-	timedatectl show --property=Timezone --value
+	gather_and_display_cpu_info
+
+	gather_and_display_memory_info
+
+	display_header "Disk Information"
+	df -h
 
 	display_header "Locale"
 	locale

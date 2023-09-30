@@ -1,4 +1,4 @@
-# SystemSensei.sh 🐧💻
+# SystemSensei.sh
 
 Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trusty sidekick for gathering, sensing, and sharing essential Linux system information. 🚀
 
@@ -59,8 +59,6 @@ This project is licensed under the CC0 License
 ## Acknowledgments 🙏
 
 - Thanks to the Linux community for endless inspiration.
-
-Happy Linux exploration with SystemSensei.sh! 🚀🐧💻
 
 ## My ETH Address
 

@@ -4,13 +4,13 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 
 ## Features 🔥
 
-- 🕒 **Current Date and Time**: Always stay up-to-date
+- 🕒 **Date and Time**: Always stay up-to-date
 
 - 🏠 **Hostname**: Know your system's identity
 
 - 📦 **Distribution**: Discover your Linux distribution
 
-- 🐧 **Kernel Version**: Stay in tune with the kernel
+- 🐧 **Kernel Information**: Stay in tune with the kernel
 
 - 💻 **CPU Information**: Get insights into your processor
 
@@ -18,11 +18,11 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 
 - 🌐 **IP Address**: Locate your IP address
 
+- 📶 **MAC Address**: Identify your network interface
+
 - 🧠 **Memory Information**: Track your RAM usage
 
 - 💾 **Disk Information**: Check your disk space
-
-- 📶 **MAC Address**: Identify your network interface
 
 - ⏰ **Timezone**: Know your time zone
 
@@ -36,7 +36,11 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 
 - 🌡️ **Sensors**: Monitor hardware sensors
 
-And much more! SystemSensei.sh is your go-to tool for Linux system insight.
+- 📜 **Boot Error Logs**: Troubleshoot system boot issues
+
+- 🌐 **DNS Information**: Discover DNS server details
+
+And much more! **SystemSensei** is your go-to tool for Linux system insight.
 
 ## How to Use 🛠️
 

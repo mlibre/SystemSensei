@@ -39,9 +39,21 @@ gather_and_display_distribution_info() {
 	echo "Name: $PRETTY_NAME"
 }
 
-show_ip_addresses() {
-	display_header "System's IP Address"
+show_network_info() {
+	display_header "System's IP and MAC address"
 	ip -o addr show | awk '{print $2, $4}' | sed 's/\/[0-9]*//' | column -t -s ' '
+	
+	echo ''
+	echo "MAC address: `ip link show | awk '/ether/ {print $2}'`"
+
+	display_header "DNS"
+	resolvectl
+
+	display_header "Hostname"
+	hostname
+
+	display_header "hostnamectl"
+	hostnamectl
 }
 
 # Function to gather and display Memory Information
@@ -74,13 +86,6 @@ display_boot_error_logs() {
 	journalctl -b -p err
 }
 
-gather_and_display_dns_info() {
-	display_header "DNS Information"
-
-	# Display DNS server information
-	resolvectl
-}
-
 # Function to gather and display system information
 gather_and_display_info() {
 	# Display section headers
@@ -96,12 +101,6 @@ gather_and_display_info() {
 	display_header "Uptime"
 	uptime
 
-	display_header "Hostname"
-	hostname
-
-	display_header "hostnamectl"
-	hostnamectl
-
 	display_header "User Information"
 	id
 
@@ -113,12 +112,7 @@ gather_and_display_info() {
 	display_header "Kernel Architecture"
 	uname -m
 
-	show_ip_addresses
-
-	gather_and_display_dns_info
-
-	display_header "MAC Address"
-	ip link show | awk '/ether/ {print $2}'
+	show_network_info
 
 	gather_and_display_cpu_info
 
@@ -130,6 +124,12 @@ gather_and_display_info() {
 	display_header "lsblk -a"
 	lsblk -a
 
+	display_header "Sensors"
+	sensors
+
+	display_top_cpu_processes
+	display_top_memory_processes
+
 	display_header "lsusb"
 	lsusb
 
@@ -138,12 +138,6 @@ gather_and_display_info() {
 
 	display_header "lshw -short"
 	sudo lshw -short
-
-	display_top_cpu_processes
-	display_top_memory_processes
-
-	display_header "Sensors"
-	sensors
 
 	display_boot_error_logs
 }

@@ -54,6 +54,9 @@ show_network_info() {
 
 	display_header "hostnamectl"
 	hostnamectl
+
+	display_header "Gateway Routes"
+	ip route
 }
 
 # Function to gather and display Memory Information
@@ -69,13 +72,13 @@ gather_and_display_memory_info() {
 # Function to display top 10 processes by CPU usage
 display_top_cpu_processes() {
 	display_header "Top 10 Processes by CPU Usage"
-	ps aux --sort=-%cpu | head -11
+	ps aux --sort=-%cpu | head -5
 }
 
 # Function to display top 10 processes by memory usage
 display_top_memory_processes() {
 	display_header "Top 10 Processes by Memory Usage"
-	ps aux --sort=-%mem | head -11
+	ps aux --sort=-%mem | head -5
 }
 
 # Function to display boot error logs

@@ -48,6 +48,14 @@ And much more! **SystemSensei** is your go-to tool for Linux system insight.
 
 5. Or `bash systemsensei.sh | less` to view output one page at a time
 
+**Bonus Feature! 🌐**
+
+Now, you can use the `-n` option to focus specifically on network information:
+
+```bash
+./systemsensei.sh -n
+```
+
 That's it! Let SystemSensei.sh unveil the secrets of your Linux machine. 🥋
 
 ## Using SystemSensei with Language Models 🤖

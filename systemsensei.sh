@@ -145,5 +145,18 @@ gather_and_display_info() {
 	display_boot_error_logs
 }
 
-# Call the function to gather and display system info
+# Process command-line options
+while getopts ":n" option; do
+	case $option in
+		n)
+			show_network_info
+			exit 0
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			exit 1
+			;;
+	esac
+done
+
 gather_and_display_info

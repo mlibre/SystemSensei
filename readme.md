@@ -1,12 +1,10 @@
 # System Sensei
 
-Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trusty sidekick for gathering, sensing, and sharing essential Linux system information. 🚀
+Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trusty sidekick for gathering and sensing essential Linux system information. 🚀
 
 ## Features 🔥
 
 - 🕒 **Date and Time**: Always stay up-to-date
-
-- 🏠 **Hostname**: Know your system's identity
 
 - 📦 **Distribution**: Discover your Linux distribution
 
@@ -16,9 +14,7 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 
 - 🖥️ **Machine Type**: Find out your system architecture
 
-- 🌐 **IP Address**: Locate your IP address
-
-- 📶 **MAC Address**: Identify your network interface
+- 🌐 **Network**: IP, MAC, DNS, Hostname, Foutes and more
 
 - 🧠 **Memory Information**: Track your RAM usage
 
@@ -37,8 +33,6 @@ Welcome to SystemSensei.sh, your Linux Info Ninja! This bash script is your trus
 - 🌡️ **Sensors**: Monitor hardware sensors
 
 - 📜 **Boot Error Logs**: Troubleshoot system boot issues
-
-- 🌐 **DNS Information**: Discover DNS server details
 
 And much more! **SystemSensei** is your go-to tool for Linux system insight.
 
